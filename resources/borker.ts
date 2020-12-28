@@ -1,18 +1,14 @@
 import express from 'express';
-
-const app = express();
-const PORT = 8000;
-import {pool} from "./db";
+import { pool } from "./db";
 import bodyParser from 'body-parser';
-import { nextTick } from 'process';
+import { Router } from 'express';
 
-app.use(express.json());
-app.use(bodyParser.json());
+const borkerRouter = Router();
 
+borkerRouter.use(express.json());
+borkerRouter.use(bodyParser.json());
 
-
-
-app.get('/borker/get', (req, res, next) => {
+borkerRouter.get('/', (req, res) => {
 	pool.query('SELECT * FROM bork_data.borker', (err, result) => {
 		if (err){
 			res.send('You encountered error: ' + err.stack);
@@ -22,7 +18,7 @@ app.get('/borker/get', (req, res, next) => {
 	});
 });
 
-app.post('/borker/testInsert', (req, res) => {
+borkerRouter.post('/testInsert', (req, res) => {
 	pool.query('insert into bork_data.borker values(\'test_1\', \'test_2\', \'test_bio\', current_timestamp)', (err, result) => {
 		if (err){
 			res.send('You encountered error: ' + err.stack);
@@ -32,6 +28,4 @@ app.post('/borker/testInsert', (req, res) => {
 	});
 });
 
-app.listen(PORT, () => {
-	console.log(`[server]: Server is running at https://localhost:${PORT}`);
-});
+export default borkerRouter;
