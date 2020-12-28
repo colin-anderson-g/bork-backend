@@ -1,5 +1,5 @@
 import express from 'express';
-import { pool } from "./db";
+import pool from "./db";
 import bodyParser from 'body-parser';
 import { Router } from 'express';
 

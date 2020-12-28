@@ -1,6 +1,6 @@
 import express, { Router, RouterOptions } from 'express';
 import bodyParser from 'body-parser';
-import { pool } from './db';
+import pool from './db';
 
 const borkRouter = Router();
 
