@@ -40,4 +40,17 @@ borkRouter.post('/insert', (req, res) => {
   });
 });
 
+borkRouter.post('/likeBork', (req, res) => {
+  const { bork_id } = req.body;
+
+  pool.query(`update bork_data.borks set likes_count = likes_count + 1 where bork_id = ${bork_id}`, (err, result) => {
+    if (err) {
+      res.send(`You encountered error: ${err.stack}`);
+    }
+
+    res.send(result.rows);
+  });
+});
+
+
 export default borkRouter;
