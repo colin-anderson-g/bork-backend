@@ -50,7 +50,7 @@ borkRouter.get('/likedBorks', (req, res) => {
   const { activeUser } = req.body;
 
   pool.query(`select * from bork_data.borks b, bork_data.likes l
-              where l.liked_by = '${ activeUser }'
+              where l.liked_by = '${activeUser}'
               and b.bork_id = l.bork_liked`
               , (err, result) => {
     if (err) {
