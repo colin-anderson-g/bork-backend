@@ -25,8 +25,6 @@ followRouter.post('/follow', (req, res) => {
         if (err) {
             res.send(`You encountered error: ${err.stack}`);
         }
-
-        res.send(result.rows);
     });
 });
 
@@ -38,12 +36,10 @@ followRouter.post('/unfollow', (req, res) => {
         if (err) {
             res.send(`You encountered error: ${err.stack}`);
         }
-
-        res.send(result.rows);
     });
 });
 
-followRouter.post('/userFollowers', (req, res) => {
+followRouter.get('/userFollowers', (req, res) => {
     const { activeUser } = req.body;
 
     pool.query(`select follower from bork_data.follows where username = '${activeUser}`, (err, result) => {
@@ -55,7 +51,7 @@ followRouter.post('/userFollowers', (req, res) => {
     });
 });
 
-followRouter.post('/userIsFollowing', (req, res) => {
+followRouter.get('/userIsFollowing', (req, res) => {
     const { activeUser } = req.body;
 
     pool.query(`select username from bork_data.follows where follower = '${activeUser}`, (err, result) => {

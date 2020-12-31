@@ -23,8 +23,6 @@ borkerRouter.post('/testInsert', (req, res) => {
 		if (err) {
 			res.send('You encountered error: ' + err.stack);
 		}
-
-		res.send(result.rows);
 	});
 });
 
@@ -40,8 +38,6 @@ borkerRouter.post('/insert', (req, res) => {
 		if (err) {
 			res.send(`You encountered error: ${err.stack}`);
 		}
-
-		res.send(result.rows);
 	});
 });
 
@@ -54,8 +50,6 @@ borkerRouter.post('/changeDisplayName', (req, res) => {
 		if (err) {
 			res.send(`You encountered error: ${err.stack}`);
 		}
-
-		res.send(result.rows);
 	});
 });
 
@@ -68,8 +62,6 @@ borkerRouter.post('/changeBioContent', (req, res) => {
 		if (err) {
 			res.send(`You encountered error: ${err.stack}`);
 		}
-
-		res.send(result.rows);
 	});
 });
 
